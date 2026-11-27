@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TıpNote – Gizlilik Politikası</title>
+  <meta name="description" content="TıpNote gizlilik politikası: notlarınız yalnızca cihazınızda saklanır, hiçbir kişisel veri toplanmaz.">
+  <link rel="icon" href="icon.png">
+  <style>
+    :root {
+      --bg: #f6faf9; --card: #ffffff; --text: #1c1b1f; --muted: #5f6368;
+      --accent: #00796b; --line: #dbe7e4; --soft: #e6f2ef;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121716; --card: #1b2220; --text: #e6e1e5; --muted: #a8adb0;
+        --accent: #6fd6c4; --line: #2c3634; --soft: #22302d;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+    }
+    main { max-width: 760px; margin: 0 auto; padding: 32px 20px 64px; }
+    header { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+    header img { width: 64px; height: 64px; border-radius: 16px; }
+    h1 { font-size: 1.7rem; margin: 0; line-height: 1.2; }
+    .updated { color: var(--muted); font-size: .9rem; margin: 4px 0 24px; }
+    .highlight {
+      background: var(--soft); border-left: 4px solid var(--accent);
+      padding: 14px 18px; border-radius: 10px; margin: 0 0 28px; font-weight: 500;
+    }
+    h2 { font-size: 1.2rem; color: var(--accent); margin: 32px 0 10px; }
+    ul { padding-left: 22px; }
+    li { margin: 6px 0; }
+    table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 10px; overflow: hidden; }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { background: var(--soft); font-weight: 600; }
+    tr:last-child td { border-bottom: 0; }
+    a { color: var(--accent); }
+    .en { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: .95rem; }
+    .en h2 { color: var(--muted); }
+    footer { margin-top: 40px; color: var(--muted); font-size: .85rem; }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="icon.png" alt="TıpNote ikonu">
+    <h1>TıpNote<br>Gizlilik Politikası</h1>
+  </header>
+  <p class="updated">Son güncelleme: 27 Kasım 2026</p>
+
+  <p class="highlight">TıpNote, notlarınızı yalnızca sizin cihazınızda saklar. Hiçbir kişisel veri toplanmaz, sunucuya gönderilmez veya üçüncü taraflarla paylaşılmaz.</p>
+
+  <h2>Toplanan veriler</h2>
+  <p>Uygulamanın bir sunucusu, kullanıcı hesabı, reklamı veya analitik/izleme aracı yoktur. Geliştirici, uygulamaya girdiğiniz hiçbir bilgiye erişemez.</p>
+
+  <h2>Verilerin saklanması</h2>
+  <ul>
+    <li>Notlar, çizimler, fotoğraflar, PDF sayfaları ve ses kayıtları cihazın uygulamaya özel depolama alanında saklanır. Başka uygulamalar bu alana erişemez.</li>
+    <li>Android'in Google Drive'a otomatik uygulama yedeği bu uygulama için kapalıdır.</li>
+    <li>Otomatik yedek açıksa, yedek dosyaları (.zip) cihazınızın <strong>İndirilenler/TipNote</strong> klasörüne yazılır. Bu dosyalar cihazınızda kalır; nereye kopyalanacağına siz karar verirsiniz.</li>
+    <li>Uygulama kaldırıldığında uygulama içi veriler silinir; İndirilenler klasöründeki yedekler kalır.</li>
+  </ul>
+
+  <h2>İzinler ve kullanım amaçları</h2>
+  <table>
+    <tr><th>İzin</th><th>Neden</th></tr>
+    <tr><td>Mikrofon</td><td>Ses kaydı ve konuşarak yazma. Yalnızca siz başlattığınızda kullanılır.</td></tr>
+    <tr><td>Kamera (sistem kamera uygulaması üzerinden)</td><td>Nota fotoğraf eklemek</td></tr>
+    <tr><td>Bildirimler, tam zamanlı alarm, açılışta başlatma</td><td>Ayarladığınız not hatırlatıcıları</td></tr>
+    <tr><td>Biyometrik</td><td>Parmak izi / yüz tanıma ile kilit açma. Biyometrik veriler uygulamaya iletilmez; doğrulamayı Android yapar.</td></tr>
+    <tr><td>Depolama (yalnızca Android 9 ve altı)</td><td>Otomatik yedeği İndirilenler klasörüne yazmak</td></tr>
+    <tr><td>İnternet</td><td>Yalnızca PDF'e dışa aktarırken Türkçe karakterli yazı tipini indirmek. Not içeriği gönderilmez.</td></tr>
+  </table>
+
+  <h2>Cihaz üzerinde işleme</h2>
+  <ul>
+    <li><strong>Görseldeki metni çıkarma (OCR):</strong> Google ML Kit ile tamamen cihaz üzerinde yapılır; görseller gönderilmez.</li>
+    <li><strong>Konuşarak yazma:</strong> Android'in ses tanıma hizmetini kullanır. Cihazınızda Türkçe çevrimdışı dil paketi yüklü değilse, ses tanıma hizmeti (ör. Google) sesi kendi sunucularında işleyebilir; bu, ilgili hizmetin gizlilik politikasına tabidir. Çevrimdışı paketi şuradan yükleyebilirsiniz: Ayarlar → Sistem → Diller → Konuşma tanıma.</li>
+  </ul>
+
+  <h2>Hasta bilgileri hakkında</h2>
+  <p>TıpNote kişisel not tutma aracıdır, bir sağlık bilgi sistemi değildir. Hasta verisi kaydediyorsanız kimlik bilgilerini anonimleştirmeniz, not kilidi ve uygulama kilidini kullanmanız, kurumunuzun ve KVKK'nın gerekliliklerine uymanız önerilir.</p>
+
+  <h2>Çocuklar</h2>
+  <p>Uygulama 13 yaş altı çocuklara yönelik değildir. Hiçbir kullanıcıdan veri toplanmadığı için çocuklardan da veri toplanmaz.</p>
+
+  <h2>Değişiklikler</h2>
+  <p>Bu politika güncellenirse yeni sürüm bu sayfada yayınlanır ve üstteki tarih değiştirilir.</p>
+
+  <h2>İletişim</h2>
+  <p>Sorularınız ve veri ile ilgili talepleriniz için: <a href="mailto:drtekinakyazi@gmail.com">drtekinakyazi@gmail.com</a></p>
+
+  <section class="en" lang="en">
+    <h2>Summary in English</h2>
+    <p>TıpNote stores all notes, drawings, images and audio recordings only on your device. The app has no server, account, ads or analytics, and collects or shares no personal data. Android cloud backup is disabled; optional automatic backups are written to the device's Downloads/TipNote folder. Text recognition runs on-device. Speech-to-text uses the Android speech service, which may process audio on its provider's servers unless an offline language pack is installed. Internet is used only to download a font when exporting to PDF. Contact: <a href="mailto:drtekinakyazi@gmail.com">drtekinakyazi@gmail.com</a></p>
+  </section>
+
+  <footer>© 2026 TıpNote</footer>
+</main>
+</body>
+</html>
