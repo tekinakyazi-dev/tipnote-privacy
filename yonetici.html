@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>TıpNote – Selçuk Tıp bağlantı yönetimi</title>
+  <link rel="icon" href="icon.png">
+  <style>
+    :root { --bg:#f6faf9; --card:#fff; --text:#1c1b1f; --muted:#5f6368; --accent:#00796b; --line:#dbe7e4; --soft:#e6f2ef; --err:#c62828; --ok:#2e7d32; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg:#121716; --card:#1b2220; --text:#e6e1e5; --muted:#a8adb0; --accent:#6fd6c4; --line:#2c3634; --soft:#22302d; --err:#ef9a9a; --ok:#a5d6a7; }
+    }
+    * { box-sizing: border-box; }
+    body { margin:0; background:var(--bg); color:var(--text); font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+    main { max-width: 820px; margin: 0 auto; padding: 20px 14px 120px; }
+    header { display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+    header img { width:44px; height:44px; border-radius:12px; }
+    h1 { font-size:1.25rem; margin:0; }
+    h2 { font-size:1.05rem; margin:0; }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px; margin-bottom:12px; }
+    label { display:block; font-size:.85rem; color:var(--muted); margin:8px 0 4px; }
+    input[type=text], input[type=url], input[type=password], textarea {
+      width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:10px;
+      background:var(--bg); color:var(--text); font:inherit;
+    }
+    textarea { min-height:60px; resize:vertical; }
+    input.bad { border-color: var(--err); }
+    button { font:inherit; border:0; border-radius:10px; padding:10px 14px; cursor:pointer; background:var(--soft); color:var(--text); }
+    button.primary { background:var(--accent); color:#fff; font-weight:600; }
+    button.danger { background:transparent; color:var(--err); padding:6px 8px; }
+    button:disabled { opacity:.5; cursor:default; }
+    .row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+    .grow { flex:1; min-width: 140px; }
+    .term > summary { cursor:pointer; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+    .term > summary::-webkit-details-marker { display:none; }
+    .badge { font-size:.75rem; padding:2px 8px; border-radius:999px; background:var(--soft); color:var(--muted); }
+    .year { border-top:1px solid var(--line); padding-top:10px; margin-top:10px; }
+    .year .row input[type=text] { max-width: 150px; }
+    .muted { color:var(--muted); font-size:.85rem; }
+    .status { position:fixed; left:0; right:0; bottom:0; background:var(--card); border-top:1px solid var(--line); padding:10px 14px; }
+    .status .inner { max-width:820px; margin:0 auto; display:flex; gap:10px; align-items:center; }
+    .msg { flex:1; font-size:.9rem; }
+    .msg.err { color:var(--err); } .msg.ok { color:var(--ok); }
+    ol { padding-left: 20px; } li { margin: 4px 0; }
+    .hidden { display:none; }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="icon.png" alt="">
+    <div>
+      <h1>Selçuk Tıp – bağlantı yönetimi</h1>
+      <div class="muted">TıpNote uygulamasındaki dönem notu bağlantılarını buradan düzenleyin.</div>
+    </div>
+  </header>
+
+  <section class="card" id="loginCard">
+    <h2>Giriş</h2>
+    <p class="muted">Kaydetmek için GitHub erişim anahtarı gerekir. Anahtar yalnızca bu cihazın tarayıcısında saklanır.</p>
+    <label for="token">GitHub erişim anahtarı (token)</label>
+    <input type="password" id="token" autocomplete="off" placeholder="github_pat_…">
+    <div class="row" style="margin-top:10px">
+      <button class="primary" id="loginBtn">Bağlan</button>
+      <button id="forgetBtn">Anahtarı unut</button>
+    </div>
+    <details style="margin-top:12px">
+      <summary class="muted">Anahtar nasıl alınır? (bir kez, 2 dakika)</summary>
+      <ol class="muted">
+        <li><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> adresini açın.</li>
+        <li>Token name: <b>TıpNote yönetim</b>, Expiration: 1 yıl.</li>
+        <li>Repository access: <b>Only select repositories</b> → <b>tipnote-privacy</b>.</li>
+        <li>Permissions → Repository permissions → <b>Contents: Read and write</b>.</li>
+        <li><b>Generate token</b> → çıkan anahtarı kopyalayıp yukarıya yapıştırın.</li>
+      </ol>
+    </details>
+  </section>
+
+  <div id="editor" class="hidden">
+    <section class="card">
+      <h2>Genel</h2>
+      <label for="baslik">Başlık</label>
+      <input type="text" id="baslik">
+      <label for="aciklama">Açıklama</label>
+      <textarea id="aciklama"></textarea>
+      <label for="duyuru">Duyuru (uygulamada vurgulu görünür, boş bırakılabilir)</label>
+      <textarea id="duyuru"></textarea>
+    </section>
+    <div id="terms"></div>
+    <section class="card">
+      <h2>Yeni öğretim yılı</h2>
+      <p class="muted">Her dönemin başına yeni yıl ekler ve onu "güncel" yapar; eski yıllar geçmiş olarak kalır.</p>
+      <div class="row">
+        <input type="text" id="newYear" class="grow" placeholder="ör. 2026-2027">
+        <button id="addYearAll">Tüm dönemlere ekle</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div class="status">
+  <div class="inner">
+    <div class="msg" id="msg">Bağlanmak için anahtarınızı girin.</div>
+    <button class="primary" id="saveBtn" disabled>Kaydet ve yayınla</button>
+  </div>
+</div>
+
+<script>
+const OWNER = 'tekinakyazi-dev', REPO = 'tipnote-privacy', PATH = 'selcuk-tip.json';
+const API = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}`;
+let data = null, sha = null, dirty = false;
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function msg(text, kind) { const m = $('msg'); m.textContent = text; m.className = 'msg ' + (kind || ''); }
+function token() { return $('token').value.trim(); }
+function b64ToUtf8(b64) { const bin = atob(b64.replace(/\n/g, '')); return new TextDecoder().decode(Uint8Array.from(bin, c => c.charCodeAt(0))); }
+function utf8ToB64(str) { const bytes = new TextEncoder().encode(str); let bin = ''; bytes.forEach(b => bin += String.fromCharCode(b)); return btoa(bin); }
+function setDirty(v = true) { dirty = v; $('saveBtn').disabled = !v || !data; if (v) msg('Kaydedilmemiş değişiklikler var.'); }
+
+async function load() {
+  msg('Yükleniyor…');
+  const res = await fetch(API + '?ref=main&t=' + Date.now(), { headers: { Authorization: 'Bearer ' + token(), Accept: 'application/vnd.github+json' } });
+  if (res.status === 401 || res.status === 403) throw new Error('Anahtar geçersiz veya yetkisi yok (Contents: Read and write gerekli).');
+  if (!res.ok) throw new Error('Dosya okunamadı (' + res.status + ').');
+  const j = await res.json();
+  sha = j.sha;
+  data = JSON.parse(b64ToUtf8(j.content));
+  render();
+  $('loginCard').classList.add('hidden');
+  $('editor').classList.remove('hidden');
+  setDirty(false);
+  msg('Bağlandı. Değişiklik yapıp "Kaydet ve yayınla"ya basın.', 'ok');
+}
+
+function render() {
+  $('baslik').value = data.baslik || '';
+  $('aciklama').value = data.aciklama || '';
+  $('duyuru').value = data.duyuru || '';
+  const wrap = $('terms');
+  wrap.innerHTML = '';
+  data.donemler.sort((a, b) => a.donem - b.donem).forEach((t, ti) => {
+    const filled = t.yillar.filter(y => y.link).length;
+    const el = document.createElement('details');
+    el.className = 'card term';
+    el.innerHTML = `
+      <summary><h2>Dönem ${t.donem}</h2><span class="badge">${filled}/${t.yillar.length} bağlantı</span></summary>
+      <label>Dönem açıklaması (isteğe bağlı)</label>
+      <input type="text" data-k="aciklama" value="${esc(t.aciklama)}">
+      <div class="years"></div>
+      <div class="row" style="margin-top:10px"><button data-act="addYear">+ Yıl ekle</button></div>`;
+    el.querySelector('[data-k=aciklama]').oninput = (e) => { t.aciklama = e.target.value; setDirty(); };
+    el.querySelector('[data-act=addYear]').onclick = () => { t.yillar.unshift({ yil: '', link: '', guncel: false, not: '' }); render(); openTerm(ti); setDirty(); };
+    const yw = el.querySelector('.years');
+    t.yillar.forEach((y, yi) => {
+      const r = document.createElement('div');
+      r.className = 'year';
+      r.innerHTML = `
+        <div class="row">
+          <input type="text" data-k="yil" placeholder="2025-2026" value="${esc(y.yil)}">
+          <label class="row" style="margin:0;color:var(--text)"><input type="radio" name="g${ti}" ${y.guncel ? 'checked' : ''}> Güncel</label>
+          <span class="grow"></span>
+          <button class="danger" data-act="up" title="Yukarı">▲</button>
+          <button class="danger" data-act="down" title="Aşağı">▼</button>
+          <button class="danger" data-act="del" title="Sil">Sil</button>
+        </div>
+        <label>Google Drive bağlantısı</label>
+        <input type="url" data-k="link" placeholder="https://drive.google.com/drive/folders/…" value="${esc(y.link)}">
+        <label>Not (isteğe bağlı, ör. "Kurul 1–3")</label>
+        <input type="text" data-k="not" value="${esc(y.not)}">`;
+      r.querySelector('[data-k=yil]').oninput = (e) => { y.yil = e.target.value.trim(); setDirty(); };
+      const link = r.querySelector('[data-k=link]');
+      link.oninput = (e) => { y.link = e.target.value.trim(); link.classList.toggle('bad', !!y.link && !/^https:\/\//.test(y.link)); setDirty(); };
+      r.querySelector('[data-k=not]').oninput = (e) => { y.not = e.target.value; setDirty(); };
+      r.querySelector('input[type=radio]').onchange = () => { t.yillar.forEach(o => o.guncel = false); y.guncel = true; setDirty(); };
+      r.querySelector('[data-act=del]').onclick = () => { if (confirm(`Dönem ${t.donem} – ${y.yil || 'yeni yıl'} silinsin mi?`)) { t.yillar.splice(yi, 1); render(); openTerm(ti); setDirty(); } };
+      r.querySelector('[data-act=up]').onclick = () => { if (yi > 0) { [t.yillar[yi - 1], t.yillar[yi]] = [t.yillar[yi], t.yillar[yi - 1]]; render(); openTerm(ti); setDirty(); } };
+      r.querySelector('[data-act=down]').onclick = () => { if (yi < t.yillar.length - 1) { [t.yillar[yi + 1], t.yillar[yi]] = [t.yillar[yi], t.yillar[yi + 1]]; render(); openTerm(ti); setDirty(); } };
+      yw.appendChild(r);
+    });
+    wrap.appendChild(el);
+  });
+}
+function openTerm(i) { const d = $('terms').children[i]; if (d) d.open = true; }
+
+function validate() {
+  for (const t of data.donemler) {
+    for (const y of t.yillar) {
+      if (!y.yil) return `Dönem ${t.donem}: yılı boş bir satır var.`;
+      if (y.link && !/^https:\/\//.test(y.link)) return `Dönem ${t.donem} – ${y.yil}: bağlantı https:// ile başlamalı.`;
+    }
+  }
+  return null;
+}
+
+async function save() {
+  data.baslik = $('baslik').value.trim();
+  data.aciklama = $('aciklama').value.trim();
+  data.duyuru = $('duyuru').value.trim();
+  const err = validate();
+  if (err) { msg(err, 'err'); return; }
+  data.guncellendi = new Date().toISOString().slice(0, 10);
+  $('saveBtn').disabled = true;
+  msg('Kaydediliyor…');
+  const body = { message: 'Selçuk Tıp bağlantıları güncellendi', content: utf8ToB64(JSON.stringify(data, null, 2) + '\n'), sha, branch: 'main' };
+  const res = await fetch(API, { method: 'PUT', headers: { Authorization: 'Bearer ' + token(), Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  if (res.status === 409) { msg('Dosya başka yerden değişmiş. Sayfayı yenileyip tekrar deneyin.', 'err'); return; }
+  if (!res.ok) { msg('Kaydedilemedi (' + res.status + '). Anahtarın yazma yetkisini kontrol edin.', 'err'); $('saveBtn').disabled = false; return; }
+  const j = await res.json();
+  sha = j.content.sha;
+  setDirty(false);
+  msg('Yayınlandı ✓ Uygulamada 1–2 dakika içinde görünür (listeyi aşağı çekerek yenileyin).', 'ok');
+  render();
+}
+
+$('loginBtn').onclick = async () => {
+  if (!token()) { msg('Anahtarı girin.', 'err'); return; }
+  try { await load(); localStorage.setItem('tipnote.token', token()); } catch (e) { msg(e.message, 'err'); }
+};
+$('forgetBtn').onclick = () => { localStorage.removeItem('tipnote.token'); $('token').value = ''; msg('Anahtar bu cihazdan silindi.'); };
+$('saveBtn').onclick = () => save().catch(e => { msg('Hata: ' + e.message, 'err'); $('saveBtn').disabled = false; });
+['baslik', 'aciklama', 'duyuru'].forEach(id => $(id).oninput = () => setDirty());
+$('addYearAll').onclick = () => {
+  const y = $('newYear').value.trim();
+  if (!/^\d{4}-\d{4}$/.test(y)) { msg('Yılı 2026-2027 biçiminde yazın.', 'err'); return; }
+  data.donemler.forEach(t => { if (!t.yillar.some(o => o.yil === y)) { t.yillar.forEach(o => o.guncel = false); t.yillar.unshift({ yil: y, link: '', guncel: true, not: '' }); } });
+  $('newYear').value = '';
+  render(); setDirty();
+};
+window.addEventListener('beforeunload', (e) => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+
+const saved = localStorage.getItem('tipnote.token');
+if (saved) { $('token').value = saved; load().catch(e => msg(e.message, 'err')); }
+</script>
+</body>
+</html>

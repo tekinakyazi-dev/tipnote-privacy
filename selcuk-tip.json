@@ -1,0 +1,189 @@
+{
+  "surum": 1,
+  "baslik": "Selçuk Üniversitesi Tıp Fakültesi",
+  "aciklama": "Dönem notlarına aşağıdan ulaşabilirsiniz. Bağlantılar Google Drive'da açılır.",
+  "duyuru": "",
+  "guncellendi": "2026-11-28",
+  "donemler": [
+    {
+      "donem": 1,
+      "aciklama": "",
+      "yillar": [
+        {
+          "yil": "2025-2026",
+          "link": "",
+          "guncel": true,
+          "not": ""
+        },
+        {
+          "yil": "2024-2025",
+          "link": "",
+          "guncel": false,
+          "not": ""
+        },
+        {
+          "yil": "2023-2024",
+          "link": "",
+          "guncel": false,
+          "not": ""
+        },
+        {
+          "yil": "2022-2023",
+          "link": "",
+          "guncel": false,
+          "not": ""
+        }
+      ]
+    },
+    {
+      "donem": 2,
+      "aciklama": "",
+      "yillar": [
+        {
+          "yil": "2025-2026",
+          "link": "",
+          "guncel": true,
+          "not": ""
+        },
+        {
+          "yil": "2024-2025",
+          "link": "",
+          "guncel": false,
+          "not": ""
+        },
+        {
+          "yil": "2023-2024",
+          "link": "",
+          "guncel": false,
+          "not": ""
+        },
+        {
+          "yil": "2022-2023",
+          "link": "",
+          "guncel": false,
+          "not": ""
+        }
+      ]
+    },
+    {
+      "donem": 3,
+      "aciklama": "",
+      "yillar": [
+        {
+          "yil": "2025-2026",
+          "link": "",
+          "guncel": true,
+          "not": ""
+        },
+        {
+          "yil": "2024-2025",
+          "link": "",
+          "guncel": false,
+          "not": ""
+        },
+        {
+          "yil": "2023-2024",
+          "link": "",
+          "guncel": false,
+          "not": ""
+        },
+        {
+          "yil": "2022-2023",
+          "link": "",
+          "guncel": false,
+          "not": ""
+        }
+      ]
+    },
+    {
+      "donem": 4,
+      "aciklama": "",
+      "yillar": [
+        {
+          "yil": "2025-2026",
+          "link": "",
+          "guncel": true,
+          "not": ""
+        },
+        {
+          "yil": "2024-2025",
+          "link": "",
+          "guncel": false,
+          "not": ""
+        },
+        {
+          "yil": "2023-2024",
+          "link": "",
+          "guncel": false,
+          "not": ""
+        },
+        {
+          "yil": "2022-2023",
+          "link": "",
+          "guncel": false,
+          "not": ""
+        }
+      ]
+    },
+    {
+      "donem": 5,
+      "aciklama": "",
+      "yillar": [
+        {
+          "yil": "2025-2026",
+          "link": "",
+          "guncel": true,
+          "not": ""
+        },
+        {
+          "yil": "2024-2025",
+          "link": "",
+          "guncel": false,
+          "not": ""
+        },
+        {
+          "yil": "2023-2024",
+          "link": "",
+          "guncel": false,
+          "not": ""
+        },
+        {
+          "yil": "2022-2023",
+          "link": "",
+          "guncel": false,
+          "not": ""
+        }
+      ]
+    },
+    {
+      "donem": 6,
+      "aciklama": "",
+      "yillar": [
+        {
+          "yil": "2025-2026",
+          "link": "",
+          "guncel": true,
+          "not": ""
+        },
+        {
+          "yil": "2024-2025",
+          "link": "",
+          "guncel": false,
+          "not": ""
+        },
+        {
+          "yil": "2023-2024",
+          "link": "",
+          "guncel": false,
+          "not": ""
+        },
+        {
+          "yil": "2022-2023",
+          "link": "",
+          "guncel": false,
+          "not": ""
+        }
+      ]
+    }
+  ]
+}
