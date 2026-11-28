@@ -112,15 +112,15 @@
       "aciklama": "",
       "yillar": [
         {
-          "yil": "ÇIKMIŞ",
-          "link": "https://drive.google.com/drive/folders/1r-Cp1RGtYrer879gbNDcLbKezVTdV48C",
-          "guncel": false,
-          "not": ""
-        },
-        {
           "yil": "2026-2027",
           "link": "https://drive.google.com/drive/folders/1wCa-rtOlJFbd9dJJT0QKEC8du7Tw6LO8",
           "guncel": true,
+          "not": ""
+        },
+        {
+          "yil": "ÇIKMIŞ",
+          "link": "https://drive.google.com/drive/folders/1r-Cp1RGtYrer879gbNDcLbKezVTdV48C",
+          "guncel": false,
           "not": ""
         },
         {
