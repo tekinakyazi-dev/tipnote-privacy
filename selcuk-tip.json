@@ -79,7 +79,7 @@
     },
     {
       "donem": 3,
-      "aciklama": "",
+      "aciklama": "https://drive.google.com/drive/folders/1tBRO1MdGvgn8XL1GfTaXRde6KzM0lAwX",
       "yillar": [
         {
           "yil": "2026-2027",
@@ -89,25 +89,19 @@
         },
         {
           "yil": "2025-2026",
-          "link": "",
+          "link": "https://drive.google.com/drive/folders/171fxYlUlycT2a9cQz9hf2iEDy5gSOYbQ",
           "guncel": false,
           "not": ""
         },
         {
           "yil": "2024-2025",
-          "link": "",
+          "link": "https://drive.google.com/drive/folders/1GtlVFv9WhHDq7F3_A05BxQ8Vt-GgdYzS",
           "guncel": false,
           "not": ""
         },
         {
           "yil": "2023-2024",
-          "link": "",
-          "guncel": false,
-          "not": ""
-        },
-        {
-          "yil": "2022-2023",
-          "link": "",
+          "link": "https://drive.google.com/drive/folders/1zfeYqgKx0NPehcip7eXcgpVr4hwpoQ5z",
           "guncel": false,
           "not": ""
         }
